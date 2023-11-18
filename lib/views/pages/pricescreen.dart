@@ -1,11 +1,7 @@
-
-
 import 'package:beams_pricecheck/controller/common/common_page.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-
-
+import 'package:input_with_keyboard_control/input_with_keyboard_control.dart';
 
 class PriceScreen extends StatefulWidget {
   const PriceScreen({Key? key}) : super(key: key);
@@ -15,7 +11,6 @@ class PriceScreen extends StatefulWidget {
 }
 
 class _PriceScreenState extends State<PriceScreen> {
-
   //GLOBAL
 
   //PAGE VARIABLE
@@ -43,49 +38,49 @@ class _PriceScreenState extends State<PriceScreen> {
     txtBarcode.dispose();
     fnBarcode.dispose();
     super.dispose();
-
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: blScreenSaver? Container(
-          decoration: boxBaseDecoration(Colors.white, 0),
-          child: CarouselSlider(
-            options: CarouselOptions(
-                autoPlay: true,
-                viewportFraction: 1.0
-            ),
-            items: imgList
-                .map((item) => Container(
-              decoration: boxImageDecoration(item, 0),
-            ))
-                .toList(),
-          ),
-        ):Center(
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: RawKeyboardListener(
-              autofocus: true,
-              focusNode: fnBarcode,
-              onKey: (e) {
-
-                if (e.character != null) {
-                  dprint("hello");
-                  dprint(e.character!);
-                }
-              },
-              child: TextField(
-                showCursor: true,
-                controller: txtBarcode,
-                onChanged: (value){
-                  dprint(value);
-                },
+        child: blScreenSaver
+            ? Container(
+                decoration: boxBaseDecoration(Colors.white, 0),
+                child: CarouselSlider(
+                  options:
+                      CarouselOptions(autoPlay: true, viewportFraction: 1.0),
+                  items: imgList
+                      .map((item) => Container(
+                            decoration: boxImageDecoration(item, 0),
+                          ))
+                      .toList(),
+                ),
+              )
+            : Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: SizedBox(
+                    width: MediaQuery.of(context).size.width - 50,
+                    height: 40,
+                    child: InputWithKeyboardControl(
+                      focusNode: InputWithKeyboardControlFocusNode(),
+                      onSubmitted: (value) {
+                        print(value);
+                      },
+                      autofocus: true,
+                      controller: txtBarcode,
+                      width: 300,
+                      startShowKeyboard: false,
+                      buttonColorEnabled: Colors.blue,
+                      buttonColorDisabled: Colors.black,
+                      underlineColor: Colors.black,
+                      showUnderline: true,
+                      showButton: false,
+                    ),
+                  ),
+                ),
               ),
-            ),
-          ),
-        ),
       ),
     );
   }
