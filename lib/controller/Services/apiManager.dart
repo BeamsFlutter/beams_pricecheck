@@ -11,6 +11,7 @@ import 'package:path/path.dart';
 
 
 class ApiManager {
+  var g= Global();
 
   var baseUrl = Global().wstrBaseUrl; //LAP----------------------------------------
   var mainBaseUrl = "http://beamsdts-001-site1.atempurl.com/api/"; //Test
@@ -37,22 +38,45 @@ class ApiManager {
 
   //POST
   //===============================================post Global //25-jul-23
+  // Future<dynamic> postGlobal(String api, dynamic body) async {
+  //   dprint("COMPANY IN POSTGLOBAL>>> ${company}");
+  //   dprint("COMPANY IN yearcode>>> ${yearcode}");
+  //   dprint("COMPANY IN token>>> ${token}");
+  //
+  //   var uri = Uri.parse(mainBaseUrl + api);
+  //   dprint(uri);
+  //   var payload = body;
+  //   dprint("PAYLOAD>>>>>>>>>>>>> ${payload}");
+  //   try {
+  //     var response = await http.post(uri,
+  //         headers: <String, String>{
+  //           'Content-Type': 'application/json; charset=UTF-8',
+  //           'COMPANY' : company,
+  //           'YEARCODE' : yearcode,
+  //           'TOKEN':  '$token'
+  //         },
+  //         body: payload);
+  //     return _processResponse(response);
+  //   } on SocketException {
+  //
+  //     throw FetchDataException('No Internet connection', uri.toString());
+  //   } on TimeoutException {
+  //     throw ApiNotRespondingException('API not responded in time', uri.toString());
+  //   }
+  // }
+
   Future<dynamic> postGlobal(String api, dynamic body) async {
-    dprint("COMPANY IN POSTGLOBAL>>> ${company}");
-    dprint("COMPANY IN yearcode>>> ${yearcode}");
-    dprint("COMPANY IN token>>> ${token}");
 
     var uri = Uri.parse(mainBaseUrl + api);
     dprint(uri);
     var payload = body;
-    dprint("PAYLOAD>>>>>>>>>>>>> ${payload}");
     try {
       var response = await http.post(uri,
           headers: <String, String>{
             'Content-Type': 'application/json; charset=UTF-8',
-            'COMPANY' : company,
-            'YEARCODE' : yearcode,
-            'TOKEN':  'Bearer $token'
+            'COMPANY' : g.wstrCompany,
+            'YEARCODE' : g.wstrYearcode,
+            'TOKEN': g.wstrToken
           },
           body: payload);
       return _processResponse(response);

@@ -18,7 +18,7 @@ class ApiCall  with BaseController{
 
     var request = jsonEncode(<dynamic, dynamic>{
       'DEVICE_ID':deviceId,
-      'APP_ID':(Global().wstrAppID??""),
+      'APP_ID':"TPR",
     });
     dprint('api/check_device_reg');
     dprint(request);

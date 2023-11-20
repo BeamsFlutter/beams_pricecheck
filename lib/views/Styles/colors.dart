@@ -12,15 +12,15 @@ const Color blackBlue = Color(0xFF001540);
 
 const Color PrimaryText = Color(0xFF414449);
 const Color titleSubText = Color(0xFF6C6C6C);
-const Color BgColor = Color(0xFFFDFDFD);
-const Color TextFiledColor = Color(0xFFEAEAEA);
 
+const Color TextFiledColor = Color(0xFFEAEAEA);
+const Color txtColor = Color(0xFF000000);
 const Color TableColor = Color(0xFF67C8D5);
 
 const Color green = Color(0xFF497911);
 
 //Row Light color FFE8E8
-
+const Color bgColor = Color(0xFFF2F7F9);
 const Color redLight = Color(0xFFFFE8E8);
 const Color greyLight = Color(0xFFF1F1F1);
 const Color blueLight = Color(0xFFE4EDFC);
