@@ -63,6 +63,7 @@ class _PriceScreenState extends State<PriceScreen> {
                   child: SizedBox(
                     width: MediaQuery.of(context).size.width - 50,
                     height: 40,
+                    // LIBRARY
                     child: InputWithKeyboardControl(
                       focusNode: InputWithKeyboardControlFocusNode(),
                       onSubmitted: (value) {
